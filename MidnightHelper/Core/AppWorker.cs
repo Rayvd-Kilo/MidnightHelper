@@ -10,8 +10,11 @@ namespace MidnightHelper.Core
     {
         MainPageSettings pageSettings;
         AppsOpener appsOpener;
+        public event Action TimerStarted;
+        public event Action JobEnded;
         public async void Start(string setedTime)
         {
+            TimerStarted?.Invoke();
             await Worker(setedTime);
         }
         private async Task Worker(string setedTime)
@@ -24,7 +27,7 @@ namespace MidnightHelper.Core
 
                 appsOpener = new AppsOpener();
                 appsOpener.OpenApps();
-            
+                JobEnded?.Invoke();
             });
         }
         private void TimeChecker(string setedTime)

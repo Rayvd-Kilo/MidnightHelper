@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Windows.Forms;
 
 namespace MidnightHelper.Core
 {
@@ -18,7 +19,10 @@ namespace MidnightHelper.Core
                 {
                     Process.Start(path);
                 }
-                catch {}
+                catch(FileNotFoundException) 
+                {
+                    MessageBox.Show($"Невозможно открыть приложение по пути {path}");
+                }
             }
         }
     }
