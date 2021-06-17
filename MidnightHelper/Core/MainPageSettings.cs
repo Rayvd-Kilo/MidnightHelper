@@ -12,9 +12,25 @@ namespace MidnightHelper.Core
 
         public void PageWorker()
         {
+            LaunchBrowser();
+            
+            DoJobQueue();
+        }
+
+        private void InitializeElements()
+        {
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            RefreshButton = Driver.FindElement(By.Id("mobile_connect_btn"));
+        }
+
+        private void LaunchBrowser()
+        {
             Driver = new ChromeDriver();
             Driver.Navigate().GoToUrl(MainUrl);
-            
+        }
+
+        private void DoJobQueue()
+        {
             InitializeElements();
 
             RefreshButton.Click();
@@ -26,11 +42,6 @@ namespace MidnightHelper.Core
             RefreshButton.Click();
 
             Driver.Close();
-        }
-        private void InitializeElements()
-        {
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-            RefreshButton = Driver.FindElement(By.Id("mobile_connect_btn"));
         }
     }
 }

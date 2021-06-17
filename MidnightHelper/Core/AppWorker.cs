@@ -9,6 +9,7 @@ namespace MidnightHelper.Core
         AppsOpener appsOpener;
         public event Action TimerStarted;
         public event Action JobEnded;
+
         public async void Start(string setedTime)
         {
             TimerStarted?.Invoke();

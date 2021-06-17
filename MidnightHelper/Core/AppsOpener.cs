@@ -13,7 +13,12 @@ namespace MidnightHelper.Core
         {
             foreach(var path in pathes.AppPathes)
             {
-                try
+                TryOpenApp(path);
+            }
+        }
+        private void TryOpenApp(string path)
+        {
+            try
                 {
                     Process.Start(path);
                 }
@@ -21,7 +26,6 @@ namespace MidnightHelper.Core
                 {
                     MessageBox.Show($"Невозможно открыть приложение по пути {path}");
                 }
-            }
         }
     }
 }
